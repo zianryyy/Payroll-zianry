@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll Input</title>
+  <style>
+    body {
+      background-color: #dbeafe;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.25);
+      width: 85%;
+      max-width: 950px;
+      padding: 25px 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .left, .right {
+      width: 48%;
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #93c5fd;
+      border-radius: 6px;
+      margin-top: 5px;
+    }
+
+    button {
+      background-color: #1e3a8a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 25px;
+      margin-top: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .form-actions {
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="width:100%;">
+      <h2>Employee Payroll Entry</h2>
+      <form id="payrollForm" style="display:flex; justify-content:space-between; flex-wrap:wrap;">
+        <div class="left">
+          <label>ID Number:</label>
+          <input type="text" id="idNumber" required>
+
+          <label>Last Name:</label>
+          <input type="text" id="lastName" required>
+
+          <label>First Name:</label>
+          <input type="text" id="firstName" required>
+
+          <label>Middle Name:</label>
+          <input type="text" id="middleName" required>
+        </div>
+
+        <div class="right">
+          <label>Position:</label>
+          <input type="text" id="position" required>
+
+          <label>Rate per Day:</label>
+          <input type="number" id="rate" required>
+
+          <label>Work Days:</label>
+          <input type="number" id="days" required>
+
+          <div class="form-actions">
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("payrollForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      const payrollData = {
+        id: document.getElementById("idNumber").value,
+        last: document.getElementById("lastName").value,
+        first: document.getElementById("firstName").value,
+        middle: document.getElementById("middleName").value,
+        position: document.getElementById("position").value,
+        rate: parseFloat(document.getElementById("rate").value),
+        days: parseInt(document.getElementById("days").value)
+      };
+
+      localStorage.setItem("payrollData", JSON.stringify(payrollData));
+      window.location.href = "display.html";
+    });
+  </script>
+</body>
+</html>

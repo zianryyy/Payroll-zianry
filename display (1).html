@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll Summary</title>
+  <style>
+    body {
+      background-color: #f0f4c3;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      width: 400px;
+    }
+    h2 {
+      color: #33691e;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    td {
+      padding: 6px 0;
+    }
+    .label {
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    .result {
+      text-align: right;
+    }
+    .btn {
+      display: block;
+      background-color: #388e3c;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: #2e7d32;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Payroll Summary</h2>
+    <table>
+      <tr><td class="label">ID:</td><td id="id"></td></tr>
+      <tr><td class="label">Name:</td><td id="name"></td></tr>
+      <tr><td class="label">Position:</td><td id="position"></td></tr>
+      <tr><td class="label">Rate:</td><td id="rate"></td></tr>
+      <tr><td class="label">Days:</td><td id="days"></td></tr>
+      <tr><td class="label">Gross Pay:</td><td id="gross"></td></tr>
+    </table>
+    <h3 style="color:#33691e;">Deductions</h3>
+    <table>
+      <tr><td>SSS (5%):</td><td class="result" id="sss"></td></tr>
+      <tr><td>Pag-ibig (3%):</td><td class="result" id="pagibig"></td></tr>
+      <tr><td>Philhealth (2%):</td><td class="result" id="philhealth"></td></tr>
+      <tr><td>Tax (5%):</td><td class="result" id="tax"></td></tr>
+      <tr><td class="label">Total Deduction:</td><td class="result" id="totalDeduction"></td></tr>
+      <tr><td class="label">Net Pay:</td><td class="result" id="net"></td></tr>
+    </table>
+
+    <a href="index.html" class="btn">Back to Form</a>
+  </div>
+
+  <script>
+    const data = JSON.parse(localStorage.getItem("payrollData"));
+
+    if(data){
+      const gross = data.rate * data.days;
+      const sss = gross * 0.05;
+      const pagibig = gross * 0.03;
+      const philhealth = gross * 0.02;
+      const tax = gross * 0.05;
+      const totalDeduction = sss + pagibig + philhealth + tax;
+      const net = gross - totalDeduction;
+
+      document.getElementById("id").textContent = data.id;
+      document.getElementById("name").textContent = `${data.last}, ${data.first} ${data.middle.charAt(0)}.`;
+      document.getElementById("position").textContent = data.position;
+      document.getElementById("rate").textContent = data.rate.toFixed(2);
+      document.getElementById("days").textContent = data.days;
+      document.getElementById("gross").textContent = gross.toFixed(2);
+      document.getElementById("sss").textContent = sss.toFixed(2);
+      document.getElementById("pagibig").textContent = pagibig.toFixed(2);
+      document.getElementById("philhealth").textContent = philhealth.toFixed(2);
+      document.getElementById("tax").textContent = tax.toFixed(2);
+      document.getElementById("totalDeduction").textContent = totalDeduction.toFixed(2);
+      document.getElementById("net").textContent = net.toFixed(2);
+    }
+  </script>
+</body>
+</html>
