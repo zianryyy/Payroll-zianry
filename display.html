@@ -6,51 +6,69 @@
   <title>Payroll Summary</title>
   <style>
     body {
-      background-color: #f0f4c3;
+      background-color: #D8E6FB;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      color: #0A1D37;
     }
+
     .card {
-      background: #fff;
+      background: #ffffff;
       padding: 25px;
       border-radius: 15px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
       width: 400px;
     }
+
     h2 {
-      color: #33691e;
+      color: #0A1D37;
       text-align: center;
+      margin-bottom: 10px;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px;
+      margin-top: 10px;
     }
+
     td {
       padding: 6px 0;
     }
+
     .label {
       font-weight: bold;
-      color: #2e7d32;
+      color: #1E3A8A;
     }
+
     .result {
       text-align: right;
+      color: #0A1D37;
     }
+
+    h3 {
+      color: #1E3A8A;
+      margin-top: 20px;
+      text-align: left;
+    }
+
     .btn {
       display: block;
-      background-color: #388e3c;
-      color: white;
+      background-color: #1E3A8A;
+      color: #ffffff;
       text-align: center;
       padding: 10px;
       border-radius: 8px;
       margin-top: 20px;
       text-decoration: none;
+      font-weight: bold;
     }
+
     .btn:hover {
-      background-color: #2e7d32;
+      background-color: #0A1D37;
     }
   </style>
 </head>
@@ -65,7 +83,8 @@
       <tr><td class="label">Days:</td><td id="days"></td></tr>
       <tr><td class="label">Gross Pay:</td><td id="gross"></td></tr>
     </table>
-    <h3 style="color:#33691e;">Deductions</h3>
+
+    <h3>Deductions</h3>
     <table>
       <tr><td>SSS (5%):</td><td class="result" id="sss"></td></tr>
       <tr><td>Pag-ibig (3%):</td><td class="result" id="pagibig"></td></tr>
